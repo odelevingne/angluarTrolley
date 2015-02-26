@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="trolleyApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body ng-controller="ProductListCtrl">
+
+  <ul>
+    <li ng-repeat="product in products">
+      <span>{{product.name}}</span>
+      <p>{{product.description}}</p>
+      <p>{{product.previousprice}}</p>
+      <p>{{product.price}}</p>
+      <p>{{product.stock}}</p>
+
+    </li>
+  </ul>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script src="js/controllers.js"></script>
+</body>
+</html>
