@@ -8,16 +8,26 @@
 </head>
 <body ng-controller="ProductListCtrl">
 
-  <ul>
-    <li ng-repeat="product in products">
-      <span>Item: {{product.name}}</span>
-      <p>Description: {{product.description}}</p>
-      <p>Previous Price:{{product.previousprice}}</p>
-      <p>New Price:{{product.price}}</p>
-      <p>In Stock:{{product.stock}}</p>
+<section class="container-fluid">
+  <section class="row">
+    <section class="col-md-2">
+      Search: <input ng-model="query">
+    </section>
 
-    </li>
-  </ul>
+    <section class="col-md-10">
+      <ul class="products">
+        <li ng-repeat="product in products | filter:query">
+          <span>Item: {{product.name}}</span>
+          <p>Description: {{product.description}}</p>
+          <p>Previous Price:{{product.previousprice}}</p>
+          <p>New Price:{{product.price}}</p>
+          <p>In Stock:{{product.stock}}</p>
+        </li>
+      </ul>
+ 
+    </section>
+  </section>
+</section>
 
 <script src="../bower_components/angular/angular.js"></script>
 <script src="js/controllers.js"></script>

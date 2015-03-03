@@ -1,12 +1,25 @@
-describe('Product list', function() {
-  it('should display a list of all the products available', function() {
-    browser.get('http://www.angularjs.org');
+describe("Trolley App Homepage", function() {
 
-    element(by.model('todoText')).sendKeys('write a protractor test');
-    element(by.css('[value="add"]')).click();
+  describe("Product list view", function() {
 
-    var todoList = element.all(by.repeater('todo in todos'));
-    expect(todoList.count()).toEqual(3);
-    expect(todoList.get(2).getText()).toEqual('write a protractor test');
+    beforeEach(function() {
+      browser.get("app/index.html");
+    });
+
+    it("should filter the phone list as a user types into the search box", function() {
+
+      var productList = element.all(by.repeater("product in products"));
+      var query = element(by.model('query'));
+
+      expect(productList.count()).toBe(13);
+
+      query.sendKeys("Blue");
+      expect(productList.count()).toBe(2);
+
+      query.clear();
+      query.sendKeys("Women's Casualwear")
+      expect(productList.count()).toBe(2);
+
+    });
   });
 });
