@@ -11,6 +11,9 @@ describe('ProductListCtrl', function(){
                                                           category: "Women's Footwear", 
                                                           price: 42, 
                                                           stock: 4 }]);
+    $httpBackend.expectGET('data/vouchers.json').respond([{description: "£5.00 off you order"}, 
+                                                          {description: "£10.00 off when you spend over £50.00"}]);
+  
   scope = $rootScope.$new();
   ctrl = $controller('ProductListCtrl', {$scope: scope})
   }));
@@ -23,7 +26,14 @@ describe('ProductListCtrl', function(){
                                     description: "Blue", 
                                     category: "Women's Footwear", 
                                     price: 42, 
-                                    stock: 4 }])
+                                    stock: 4 }]);
+  });
+
+  it('should create a "vouchers" model with 2 vouchers fetched from xhr', function() {
+    expect(scope.vouchers).toBeUndefined();
+    $httpBackend.flush();
+
+    expect(scope.vouchers).toEqual([{description: "£5.00 off you order"}, {description: "£10.00 off when you spend over £50.00"}])
   });
 });
 
