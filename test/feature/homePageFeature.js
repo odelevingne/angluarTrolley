@@ -11,9 +11,9 @@ describe("Trolley App Homepage", function() {
       var secondProduct = productList.get(1).getText();
 
       expect(secondProduct).toContain("Item: Suede Shoes");
-      expect(secondProduct).toContain("Blue");
-      expect(secondProduct).toContain("42");
-      expect(secondProduct).toContain("4");
+      expect(secondProduct).toContain("Description: Blue");
+      expect(secondProduct).toContain("New Price: 42");
+      expect(secondProduct).toContain("In Stock: 4");
 
     });
 
