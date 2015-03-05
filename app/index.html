@@ -14,7 +14,7 @@
       Search: <input ng-model="query">
     </section>
 
-    <section class="col-md-10">
+    <section class="col-md-5">
       <ul class="products">
         <li ng-repeat="product in products | filter:query">
           <span>Item: {{product.name}}</span>
@@ -24,7 +24,13 @@
           <p class="stock">In Stock: {{product.stock}}</p>
         </li>
       </ul>
- 
+    </section>
+    <section class="col-md-5">
+      <ul class="vouchers">
+        <li ng-repeat="voucher in vouchers">
+          <span>Voucher: {{voucher.name}}</span>
+        </li>
+      </ul>
     </section>
   </section>
 </section>

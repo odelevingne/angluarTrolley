@@ -39,7 +39,7 @@ describe("Trolley App Homepage", function() {
     it("should display the list of vouchers and their acommpanying info", function() {
       var firstVoucher = element.all(by.repeater("voucher in vouchers")).get(0).getText();
 
-      expect(firstVoucher).toContain("£5.00 off your order")
+      expect(firstVoucher).toContain("Voucher: £5.00 off your order")
     });
   });
 });
