@@ -12,7 +12,7 @@ describe("Trolley App Homepage", function() {
 
       expect(secondProduct).toContain("Item: Suede Shoes");
       expect(secondProduct).toContain("Description: Blue");
-      expect(secondProduct).toContain("New Price: 42");
+      expect(secondProduct).toContain("New Price: £42.00");
       expect(secondProduct).toContain("In Stock: 4");
 
     });

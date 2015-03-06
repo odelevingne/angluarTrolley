@@ -9,5 +9,4 @@ var trolleyApp = angular.module('trolleyApp', []);
       $scope.vouchers = data;
     });
 
-
 }]);
