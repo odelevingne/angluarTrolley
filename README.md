@@ -1,1 +1,1 @@
-A shopping trolley made in Angular.js
+A shopping trolley made in Angular.js, teaching myself Angular as I go.
