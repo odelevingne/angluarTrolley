@@ -35,5 +35,13 @@ describe('ProductListCtrl', function(){
 
     expect(scope.vouchers).toEqual([{description: "£5.00 off you order"}, {description: "£10.00 off when you spend over £50.00"}])
   });
+
+  it('should be able to add a product to the basket and remove one from the stock in the model', function() {
+    $httpBackend.flush();
+    var shoes = $scope.products[0];
+    scope.addTobasket(shoes);
+    expect(scope.products.stock).toEqual(3);
+    expect(scope.basket).toEqual
+  });
 });
 
