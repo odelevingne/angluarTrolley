@@ -26,7 +26,6 @@ var trolleyApp = angular.module('trolleyApp', []);
     };
 
     var checkIfInBasket = function(product) {
-      var i = null;
       for(i = 0; $scope.basket.length > i; i +=1) {
         if ($scope.basket[i].name === product.name) {
           return true;

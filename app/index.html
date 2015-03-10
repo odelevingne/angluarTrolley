@@ -14,7 +14,7 @@
       Search: <input ng-model="query">
     </section>
 
-    <section class="col-md-5">
+    <section class="col-md-4">
       <ul class="products">
         <li ng-repeat="product in products | filter:query">
           <span>Item: {{product.name}}</span>
@@ -26,10 +26,20 @@
         </li>
       </ul>
     </section>
-    <section class="col-md-5">
+    <section class="col-md-4">
       <ul class="vouchers">
         <li ng-repeat="voucher in vouchers">
           <span>Voucher: {{voucher.name}}</span>
+        </li>
+      </ul>
+    </section>
+    <section class="col-md-2">
+      <p>Basket:</p>
+      <ul class="basket">
+        <li ng-repeat="product in basket">
+          <span>Item: {{product.name}}</span>
+          <p>Price: {{product.price}}</p>
+          <p>Quantity: {{product.stock}}</p>
         </li>
       </ul>
     </section>
