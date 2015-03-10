@@ -15,7 +15,7 @@ describe('ProductListCtrl', function(){
                                                           {description: "£10.00 off when you spend over £50.00"}]);
   
   scope = $rootScope.$new();
-  ctrl = $controller('ProductListCtrl', {$scope: scope})
+  ctrl = $controller('ProductListCtrl', {$scope: scope});
   }));
 
   it('should create a "products" model with 1 product fetched from xhr', function() {
@@ -57,6 +57,15 @@ describe('ProductListCtrl', function(){
                                   category: "Women's Footwear", 
                                   price: 42, 
                                   stock: 2 }]);
+  });
+
+  it('should be able to remove an item from the basket', function() {
+    $httpBackend.flush();
+    var shoes = scope.products[0];
+    scope.addToBasket(shoes);
+    expect(scope.basket[0].stock).toEqual(1);
+    scope.removeFromBasket(shoes);
+    expect(scope.basket).toEqual([]);
   });
 });
 

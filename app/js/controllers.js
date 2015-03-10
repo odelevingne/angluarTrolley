@@ -20,8 +20,17 @@ var trolleyApp = angular.module('trolleyApp', []);
                         "stock": 1});
       product.stock -= 1;
       } else {
-        this.basket[0].stock += 1;
+        getProduct(product).stock += 1;
         product.stock -= 1;
+      }
+    };
+
+    $scope.removeFromBasket = function(product) {
+      var fetched = getProduct(product)
+      if(fetched.stock === 1) {
+        this.basket.splice(this.basket.indexOf('fetched'), 1);
+      } else {
+        fetched.stock -= 1;
       }
     };
 
@@ -33,4 +42,14 @@ var trolleyApp = angular.module('trolleyApp', []);
       };
       return false;
     };
+
+    var getProduct = function(product) {
+      for(var i = 0; i < $scope.basket.length; i++) {
+        if($scope.basket[i].name == product.name)
+        {
+          return $scope.basket[i];
+        }
+      };
+    };
+
 }]);
