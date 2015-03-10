@@ -13,11 +13,13 @@ var trolleyApp = angular.module('trolleyApp', []);
     });
 
     $scope.addToBasket = function(product) {
-      this.basket.push(product);
-      product.stock -+ 1;
+      // product.price
+      this.basket.push({"name": product.name,
+                        "category": product.category,
+                        "price": product.price,
+                        "stock": 1});
+      product.stock -= 1;
     };
 
-
 }]);
-
 

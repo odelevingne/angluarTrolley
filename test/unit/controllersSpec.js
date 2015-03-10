@@ -38,10 +38,13 @@ describe('ProductListCtrl', function(){
 
   it('should be able to add a product to the basket and remove one from the stock in the model', function() {
     $httpBackend.flush();
-    var shoes = $scope.products[0];
-    scope.addTobasket(shoes);
-    expect(scope.products.stock).toEqual(3);
-    expect(scope.basket).toEqual
+    var shoes = scope.products[0];
+    scope.addToBasket(shoes);
+    expect(shoes.stock).toEqual(3);
+    expect(scope.basket).toEqual([{name: "Suede Shoes", 
+                                  category: "Women's Footwear", 
+                                  price: 42, 
+                                  stock: 1 }])
   });
 });
 
