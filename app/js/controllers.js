@@ -13,7 +13,7 @@ var trolleyApp = angular.module('trolleyApp', []);
     });
 
     $scope.addToBasket = function(product) {
-      if(!checkIfInBasket(product)) {
+      if(!getProduct(product)) {
       this.basket.push({"name": product.name,
                         "category": product.category,
                         "price": product.price,
@@ -32,15 +32,6 @@ var trolleyApp = angular.module('trolleyApp', []);
       } else {
         fetched.stock -= 1;
       }
-    };
-
-    var checkIfInBasket = function(product) {
-      for(i = 0; $scope.basket.length > i; i +=1) {
-        if ($scope.basket[i].name === product.name) {
-          return true;
-        }
-      };
-      return false;
     };
 
     var getProduct = function(product) {
