@@ -13,24 +13,28 @@ var trolleyApp = angular.module('trolleyApp', []);
     });
 
     $scope.addToBasket = function(product) {
-      if(!getProduct(product)) {
+      var fetched = getProduct(product);
+      if(fetched === undefined) {
       this.basket.push({"name": product.name,
                         "category": product.category,
                         "price": product.price,
                         "stock": 1});
       product.stock -= 1;
       } else {
-        getProduct(product).stock += 1;
+        fetched.stock += 1;
         product.stock -= 1;
       }
     };
 
     $scope.removeFromBasket = function(product) {
-      var fetched = getProduct(product)
+      var fetched = getProduct(product);
+      var fetchedProd = getProductProds(product);
       if(fetched.stock === 1) {
         this.basket.splice(this.basket.indexOf('fetched'), 1);
+        fetchedProd.stock += 1;
       } else {
         fetched.stock -= 1;
+        fetchedProd.stock += 1;
       }
     };
 
@@ -39,6 +43,15 @@ var trolleyApp = angular.module('trolleyApp', []);
         if($scope.basket[i].name == product.name)
         {
           return $scope.basket[i];
+        }
+      };
+    };
+
+    var getProductProds = function(product) {
+      for(var i = 0; i < $scope.products.length; i++) {
+        if($scope.products[i].name == product.name)
+        {
+          return $scope.products[i];
         }
       };
     };
