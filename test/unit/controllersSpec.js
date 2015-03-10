@@ -36,7 +36,7 @@ describe('ProductListCtrl', function(){
     expect(scope.vouchers).toEqual([{description: "£5.00 off you order"}, {description: "£10.00 off when you spend over £50.00"}])
   });
 
-  it('should be able to add a product to the basket and remove one from the stock in the model', function() {
+  it('should be able to add a product to the basket', function() {
     $httpBackend.flush();
     var shoes = scope.products[0];
     scope.addToBasket(shoes);
@@ -44,7 +44,19 @@ describe('ProductListCtrl', function(){
     expect(scope.basket).toEqual([{name: "Suede Shoes", 
                                   category: "Women's Footwear", 
                                   price: 42, 
-                                  stock: 1 }])
+                                  stock: 1 }]);
+  });
+
+  it('should be able to add two of a single item to the basket', function() {
+    $httpBackend.flush();
+    var shoes = scope.products[0];
+    scope.addToBasket(shoes);
+    scope.addToBasket(shoes);
+    expect(shoes.stock).toEqual(2);
+    expect(scope.basket).toEqual([{name: "Suede Shoes", 
+                                  category: "Women's Footwear", 
+                                  price: 42, 
+                                  stock: 2 }]);
   });
 });
 

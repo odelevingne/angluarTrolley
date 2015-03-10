@@ -13,7 +13,6 @@ var trolleyApp = angular.module('trolleyApp', []);
     });
 
     $scope.addToBasket = function(product) {
-      // product.price
       this.basket.push({"name": product.name,
                         "category": product.category,
                         "price": product.price,
@@ -22,4 +21,3 @@ var trolleyApp = angular.module('trolleyApp', []);
     };
 
 }]);
-
