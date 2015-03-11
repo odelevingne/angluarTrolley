@@ -67,5 +67,13 @@ describe('ProductListCtrl', function(){
     scope.removeFromBasket(shoes);
     expect(scope.basket).toEqual([]);
   });
+
+  it('should know the total price of the items in the basket', function() {
+    $httpBackend.flush();
+    var shoes = scope.products[0];
+    scope.addToBasket(shoes);
+    scope.addToBasket(shoes);
+    expect(scope.basket.total).toEqual(84);
+  });
 });
 

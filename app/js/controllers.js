@@ -30,7 +30,7 @@ var trolleyApp = angular.module('trolleyApp', []);
       var fetched = getProduct(product);
       var fetchedProd = getProductProds(product);
       if(fetched.stock === 1) {
-        this.basket.splice(this.basket.indexOf('fetched'), 1);
+        this.basket.splice(this.basket.indexOf(fetched), 1);
         fetchedProd.stock += 1;
       } else {
         fetched.stock -= 1;
