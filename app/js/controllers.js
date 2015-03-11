@@ -38,6 +38,14 @@ var trolleyApp = angular.module('trolleyApp', []);
       }
     };
 
+    $scope.getTotal = function() {
+      total = 0;
+        for(var i = 0; i < this.basket.length; i++) {
+          total += parseInt(this.basket[i].price * this.basket[i].stock);
+        }
+      return total;
+    };
+
     var getProduct = function(product) {
       for(var i = 0; i < $scope.basket.length; i++) {
         if($scope.basket[i].name == product.name)

@@ -71,9 +71,11 @@ describe('ProductListCtrl', function(){
   it('should know the total price of the items in the basket', function() {
     $httpBackend.flush();
     var shoes = scope.products[0];
+    expect(scope.total).toBeUndefined();
     scope.addToBasket(shoes);
     scope.addToBasket(shoes);
-    expect(scope.basket.total).toEqual(84);
+    expect(scope.basket[0].stock).toEqual(2);
+    expect(scope.getTotal()).toEqual(84);
   });
 });
 

@@ -38,11 +38,12 @@
       <ul class="basket">
         <li ng-repeat="product in basket">
           <span>Item: {{product.name}}</span>
-          <p>Price: {{product.price}}</p>
+          <p>Price: {{product.price | currency:"£"}}</p>
           <p>Quantity: {{product.stock}}</p>
           <button type="button" ng-click="removeFromBasket(product, basket)">Remove</button>
         </li>
       </ul>
+      <p>Sub Total: {{getTotal() | currency:"£"}}</p>
     </section>
   </section>
 </section>
