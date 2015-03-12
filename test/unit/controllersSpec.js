@@ -11,8 +11,11 @@ describe('ProductListCtrl', function(){
                                                           category: "Women's Footwear", 
                                                           price: 42, 
                                                           stock: 4 }]);
-    $httpBackend.expectGET('data/vouchers.json').respond([{description: "£5.00 off you order"}, 
-                                                          {description: "£10.00 off when you spend over £50.00"}]);
+    $httpBackend.expectGET('data/vouchers.json').respond([{description: "£5.00 off you order",
+                                                          discount: 5}, 
+                                                          {description: "£10.00 off when you spend over £50.00",
+                                                          discount: 10,
+                                                          conditions: "getTotal() > 50"}]);
   
   scope = $rootScope.$new();
   ctrl = $controller('ProductListCtrl', {$scope: scope});
@@ -33,7 +36,7 @@ describe('ProductListCtrl', function(){
     expect(scope.vouchers).toBeUndefined();
     $httpBackend.flush();
 
-    expect(scope.vouchers).toEqual([{description: "£5.00 off you order"}, {description: "£10.00 off when you spend over £50.00"}])
+    expect(scope.vouchers[1]).toEqual({description: "£10.00 off when you spend over £50.00", discount: 10, conditions: "getTotal() > 50"})
   });
 
   it('should be able to add a product to the basket', function() {
@@ -71,11 +74,19 @@ describe('ProductListCtrl', function(){
   it('should know the total price of the items in the basket', function() {
     $httpBackend.flush();
     var shoes = scope.products[0];
-    expect(scope.total).toBeUndefined();
+    expect(scope.getTotal()).toEqual(0);
     scope.addToBasket(shoes);
     scope.addToBasket(shoes);
-    expect(scope.basket[0].stock).toEqual(2);
     expect(scope.getTotal()).toEqual(84);
+  });
+
+  it('allows the user to add a voucher to the basket', function() {
+    $httpBackend.flush();
+    var shoes = scope.products[0];
+    var voucher = scope.products[0];
+    scope.addToBasket(shoes);
+    scope.redeemVoucher(voucher);
+    expect(scope.getTotal()).toEqual(39);
   });
 });
 
