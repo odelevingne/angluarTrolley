@@ -46,6 +46,19 @@ var trolleyApp = angular.module('trolleyApp', []);
       return total;
     };
 
+    $scope.redeemVoucher = function(voucher) {
+      var subTote = $scope.getTotal() 
+      $scope.subTotal = subTote - getVoucher(voucher).discount;
+    };
+
+    var getVoucher = function(voucher) {
+      for(var i = 0; i < $scope.vouchers.length; i++) {
+        if($scope.vouchers[i].id === voucher.id) {
+          return $scope.vouchers[i];
+        }
+      };
+    };
+
     var getProduct = function(product) {
       for(var i = 0; i < $scope.basket.length; i++) {
         if($scope.basket[i].name == product.name)
@@ -64,4 +77,5 @@ var trolleyApp = angular.module('trolleyApp', []);
       };
     };
 
+    $scope.subTotal = $scope.getTotal();
 }]);

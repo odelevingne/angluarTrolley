@@ -1,13 +1,16 @@
 [
-  { "name": "£5.00 off your order",
+  { "id": 0,
+    "name": "£5.00 off your order",
     "discount": 5,
     "conditions": "undefined" 
   },
-  { "name": "£10.00 off when you spend over £50.00",
+  { "id": 1,
+    "name": "£10.00 off when you spend over £50.00",
     "discount": 10,
     "conditions": "getTotal() > 50"
   },
-  { "name": "£15.00 off when you have bought at least one footwear item and spent over £75.00",
+  { "id": 2,
+    "name": "£15.00 off when you have bought at least one footwear item and spent over £75.00",
     "discount": 15,
     "conditions": "getTotal() > 75 && $scope.basket"
   }

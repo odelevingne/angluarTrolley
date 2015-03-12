@@ -86,7 +86,7 @@ describe('ProductListCtrl', function(){
     var voucher = scope.products[0];
     scope.addToBasket(shoes);
     scope.redeemVoucher(voucher);
-    expect(scope.getTotal()).toEqual(39);
+    expect(scope.subTotal).toEqual(37);
   });
 });
 
