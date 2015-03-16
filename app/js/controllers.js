@@ -3,6 +3,8 @@ var trolleyApp = angular.module('trolleyApp', []);
   trolleyApp.controller('ProductListCtrl', ['$scope', '$http', function($scope, $http) {
     
     $scope.basket = [];
+    $scope.subTotal = 0;
+    $scope.redeemed = []
 
     $http.get('data/products.json').success(function(data) {
       $scope.products = data;
@@ -20,9 +22,11 @@ var trolleyApp = angular.module('trolleyApp', []);
                         "price": product.price,
                         "stock": 1});
       product.stock -= 1;
+      $scope.subTotal = $scope.getTotal();
       } else {
         fetched.stock += 1;
         product.stock -= 1;
+        $scope.subTotal = $scope.getTotal();
       }
     };
 
@@ -32,9 +36,11 @@ var trolleyApp = angular.module('trolleyApp', []);
       if(fetched.stock === 1) {
         this.basket.splice(this.basket.indexOf(fetched), 1);
         fetchedProd.stock += 1;
+        this.subTotal;
       } else {
         fetched.stock -= 1;
         fetchedProd.stock += 1;
+        this.subTotal;
       }
     };
 
@@ -48,7 +54,8 @@ var trolleyApp = angular.module('trolleyApp', []);
 
     $scope.redeemVoucher = function(voucher) {
       var subTote = $scope.getTotal() 
-      $scope.subTotal = subTote - getVoucher(voucher).discount;
+      discount = getVoucher(voucher).discount
+      $scope.subTotal = subTote - discount;
     };
 
     var getVoucher = function(voucher) {
@@ -77,5 +84,4 @@ var trolleyApp = angular.module('trolleyApp', []);
       };
     };
 
-    $scope.subTotal = $scope.getTotal();
 }]);

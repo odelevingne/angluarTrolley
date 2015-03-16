@@ -11,9 +11,11 @@ describe('ProductListCtrl', function(){
                                                           category: "Women's Footwear", 
                                                           price: 42, 
                                                           stock: 4 }]);
-    $httpBackend.expectGET('data/vouchers.json').respond([{description: "£5.00 off you order",
+    $httpBackend.expectGET('data/vouchers.json').respond([{id: 0,
+                                                          description: "£5.00 off you order",
                                                           discount: 5}, 
-                                                          {description: "£10.00 off when you spend over £50.00",
+                                                          {id: 1,
+                                                          description: "£10.00 off when you spend over £50.00",
                                                           discount: 10,
                                                           conditions: "getTotal() > 50"}]);
   
@@ -36,7 +38,7 @@ describe('ProductListCtrl', function(){
     expect(scope.vouchers).toBeUndefined();
     $httpBackend.flush();
 
-    expect(scope.vouchers[1]).toEqual({description: "£10.00 off when you spend over £50.00", discount: 10, conditions: "getTotal() > 50"})
+    expect(scope.vouchers[1]).toEqual({id: 1, description: "£10.00 off when you spend over £50.00", discount: 10, conditions: "getTotal() > 50"})
   });
 
   it('should be able to add a product to the basket', function() {
@@ -83,9 +85,11 @@ describe('ProductListCtrl', function(){
   it('allows the user to add a voucher to the basket', function() {
     $httpBackend.flush();
     var shoes = scope.products[0];
-    var voucher = scope.products[0];
+    var voucher = scope.vouchers[0];
+    expect(scope.redeemed).toEqual([]);
     scope.addToBasket(shoes);
     scope.redeemVoucher(voucher);
+    expect(scope.redeemed).toEqual([{id: 1, discount: 10, conditions: "getTotal() > 50"}])
     expect(scope.subTotal).toEqual(37);
   });
 });

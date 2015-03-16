@@ -22,7 +22,7 @@
           <p class="previous">Previous Price: {{product.previousprice | currency:"£"}}</p>
           <p class="price">New Price: {{product.price | currency:"£"}}</p>
           <p class="stock">In Stock: {{product.stock}}</p>
-          <button type="button" ng-click="addToBasket(product, products)">Add To Basket</button>
+          <button type="button" ng-click="addToBasket(product)">Add To Basket</button>
         </li>
       </ul>
     </section>
@@ -30,6 +30,7 @@
       <ul class="vouchers">
         <li ng-repeat="voucher in vouchers">
           <span>Voucher: {{voucher.name}}</span>
+          <button type="button" ng-click="redeemVoucher(voucher)">Redeem</button>
         </li>
       </ul>
     </section>
@@ -40,10 +41,10 @@
           <span>Item: {{product.name}}</span>
           <p>Price: {{product.price | currency:"£"}}</p>
           <p>Quantity: {{product.stock}}</p>
-          <button type="button" ng-click="removeFromBasket(product, basket)">Remove</button>
+          <button type="button" ng-click="removeFromBasket(product)">Remove</button>
         </li>
       </ul>
-      <p>Sub Total: {{getTotal() | currency:"£"}}</p>
+      <p>Sub Total: {{subTotal | currency:"£"}}</p>
     </section>
   </section>
 </section>
